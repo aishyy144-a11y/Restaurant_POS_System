@@ -44,3 +44,27 @@ export const formatDateAndTime = (date) => {
 
   return dateAndTime;
 }
+
+export const getImageUrl = (imagePath) => {
+  if (!imagePath) return "";
+  
+  // If it's already a full URL (but not localhost)
+  if (imagePath.startsWith("http") && !imagePath.includes("localhost")) {
+    return imagePath;
+  }
+
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+  // If it's a localhost URL, replace it with backend URL
+  if (imagePath.startsWith("http://localhost")) {
+    return imagePath.replace(/http:\/\/localhost:\d+/, backendUrl);
+  }
+
+  // If it's a relative path
+  if (imagePath.startsWith("/uploads")) {
+    return `${backendUrl}${imagePath}`;
+  }
+
+  // Fallback
+  return imagePath;
+};

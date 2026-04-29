@@ -6,6 +6,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { addItems } from "../../redux/slices/cartSlice";
 import { useLocation } from "react-router-dom";
+import { getImageUrl } from "../../utils";
 
 
 const MenuContainer = () => {
@@ -114,7 +115,7 @@ const MenuContainer = () => {
                 }`}
                 style={{ 
                   backgroundColor: isDark ? menu.bgColor : undefined,
-                  backgroundImage: menu.image ? `url(${menu.image})` : undefined,
+                  backgroundImage: menu.image ? `url(${getImageUrl(menu.image)})` : undefined,
                 }}
               >
               </div>
@@ -152,7 +153,7 @@ const MenuContainer = () => {
             >
               <div 
                 className="w-full h-[150px] bg-cover bg-center rounded-t-lg bg-gray-200"
-                style={{ backgroundImage: item.image ? `url(${item.image})` : undefined }}
+                style={{ backgroundImage: item.image ? `url(${getImageUrl(item.image)})` : undefined }}
               >
               </div>
               <div className={`flex flex-col justify-between w-full p-2 rounded-b-lg border-l border-r border-b ${

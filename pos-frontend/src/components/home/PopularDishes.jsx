@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { getDishStats } from "../../https";
+import { getImageUrl } from "../../utils";
 
 const PopularDishes = ({ isRestricted }) => {
   const theme = useSelector((state) => state.theme.theme);
@@ -50,7 +51,7 @@ const PopularDishes = ({ isRestricted }) => {
                 <h1 className={`${textColor} font-bold text-xl mr-4`}>{(index + 1) < 10 ? `0${index + 1}` : index + 1}</h1>
                 <div 
                     className="w-[50px] h-[50px] rounded-full bg-cover bg-center bg-gray-200 flex-shrink-0"
-                    style={{ backgroundImage: dish.image ? `url(${dish.image})` : undefined }}
+                    style={{ backgroundImage: dish.image ? `url(${getImageUrl(dish.image)})` : undefined }}
                 ></div>
                 <div>
                   <h1 className={`${textColor} font-semibold tracking-wide`}>{dish.name}</h1>

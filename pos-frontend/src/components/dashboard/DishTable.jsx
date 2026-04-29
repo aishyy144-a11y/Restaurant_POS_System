@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { getDishStats } from "../../https/index";
+import { getImageUrl } from "../../utils";
 
 const DishTable = () => {
   const theme = useSelector((state) => state.theme.theme);
@@ -51,7 +52,7 @@ const DishTable = () => {
                         {dish.image && (
                             <div 
                                 className="w-10 h-10 rounded-full bg-cover bg-center bg-gray-200"
-                                style={{ backgroundImage: `url(${dish.image})` }}
+                                style={{ backgroundImage: `url(${getImageUrl(dish.image)})` }}
                             ></div>
                         )}
                         <span>{dish.name}</span>

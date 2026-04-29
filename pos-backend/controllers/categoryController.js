@@ -7,7 +7,7 @@ exports.createCategory = async (req, res, next) => {
     const { name } = req.body;
     let image = "";
     if (req.file) {
-      image = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+      image = `/uploads/${req.file.filename}`;
     }
 
     const category = await Category.create({ name, image });

@@ -7,7 +7,7 @@ exports.createDish = async (req, res, next) => {
     const { name, price, category, description, isAvailable, qtyUnit } = req.body;
     let image = "";
     if (req.file) {
-      image = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+      image = `/uploads/${req.file.filename}`;
     }
     const dish = await Dish.create({
       name,

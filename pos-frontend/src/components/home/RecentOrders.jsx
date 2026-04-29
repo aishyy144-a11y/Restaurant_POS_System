@@ -31,10 +31,10 @@ const RecentOrders = () => {
   const searchIconColor = isDark ? "text-[#f5f5f5]" : "text-blue-900";
 
   return (
-    <div className="px-8 mt-6">
+    <div className="px-0 md:px-8 mt-6">
       <div className={`${containerBg} w-full mx-auto rounded-lg`}>
-        <div className="flex justify-between items-center px-6 py-4">
-          <h1 className={`${textColor} text-lg font-semibold tracking-wide`}>
+        <div className="flex justify-between items-center px-4 md:px-6 py-4">
+          <h1 className={`${textColor} text-base md:text-lg font-semibold tracking-wide`}>
             Recent Orders
           </h1>
           <p onClick={() => navigate("/orders")} className="text-[#025cca] text-sm font-semibold cursor-pointer">
@@ -42,17 +42,17 @@ const RecentOrders = () => {
           </p>
         </div>
 
-        <div className={`flex items-center gap-4 ${searchBg} rounded-[15px] px-6 py-4 mx-6`}>
+        <div className={`flex items-center gap-3 md:gap-4 ${searchBg} rounded-[15px] px-4 md:px-6 py-3 md:py-4 mx-4 md:mx-6`}>
           <FaSearch className={searchIconColor} />
           <input
             type="text"
             placeholder="Search recent orders"
-            className={`${searchBg} outline-none ${textColor}`}
+            className={`${searchBg} outline-none ${textColor} text-sm md:text-base w-full`}
           />
         </div>
 
         {/* Order list */}
-        <div className="mt-4 px-6 pb-6">
+        <div className="mt-4 px-4 md:px-6 pb-4 md:pb-6">
           {resData?.data?.data?.length > 0 ? (
             [...resData.data.data]
               .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))

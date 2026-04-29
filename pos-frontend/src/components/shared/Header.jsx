@@ -92,7 +92,7 @@ const Header = () => {
 
         <div className={`flex items-center gap-2 ${userBg} rounded-full px-2 md:px-4 py-1 md:py-2 shadow-sm`}>
           <FaUserCircle className={`${textColor} text-xl md:text-2xl`} />
-          <div className="flex flex-col items-start leading-tight hidden xs:block">
+          <div className="flex flex-col items-start leading-tight">
             <h1 className={`text-xs md:text-sm ${textColor} font-semibold truncate max-w-[80px] md:max-w-none`}>
               {userData.name || "Guest"}
             </h1>

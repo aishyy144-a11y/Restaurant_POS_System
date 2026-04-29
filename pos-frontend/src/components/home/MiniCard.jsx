@@ -8,7 +8,7 @@ const MiniCard = ({title, icon, number, footerNum}) => {
   const textColor = isDark ? "text-[#f5f5f5]" : "text-blue-900";
   
   return (
-    <div className={`${cardBg} py-5 px-5 rounded-lg w-[50%]`}>
+    <div className={`${cardBg} py-5 px-5 rounded-lg w-full sm:w-[50%]`}>
         <div className='flex items-start justify-between'>
             <h1 className={`${textColor} text-lg font-semibold tracking-wide`}>{title}</h1>
             <button className={`${title === "Total Earnings" ? "bg-[#02ca3a]" : "bg-[#f6b100]"} p-3 rounded-lg text-[#f5f5f5] text-2xl`}>{icon}</button>

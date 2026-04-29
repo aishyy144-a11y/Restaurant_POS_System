@@ -11,7 +11,7 @@ const useLoadData = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
 
       if (!token) {
         // No token → remove user and redirect
@@ -31,7 +31,7 @@ const useLoadData = () => {
       } catch (error) {
         console.log(error);
         dispatch(removeUser());
-        localStorage.removeItem("token"); // remove invalid token
+        sessionStorage.removeItem("token"); // remove invalid token
       } finally {
         setIsLoading(false);
       }

@@ -44,7 +44,7 @@ const AdminLogin = () => {
       }
 
       if (token) {
-        localStorage.setItem("token", token);
+        sessionStorage.setItem("token", token);
       }
       const { _id, name, email, phone, role } = user;
       dispatch(setUser({ _id, name, email, phone, role }));

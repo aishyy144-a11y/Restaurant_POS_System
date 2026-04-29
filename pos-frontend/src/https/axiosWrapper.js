@@ -16,7 +16,7 @@ export const axiosWrapper = axios.create({
 // Attach JWT token to every request automatically
 axiosWrapper.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     if (token) config.headers.Authorization = `Bearer ${token}`;
     
     // Remove Content-Type for FormData to allow browser to set boundary

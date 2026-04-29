@@ -20,12 +20,12 @@ const Header = () => {
   const logoutMutation = useMutation({
     mutationFn: logout,
     onSuccess: () => {
-      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
       dispatch(removeUser());
       navigate("/", { replace: true });
     },
     onError: () => {
-      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
       dispatch(removeUser());
       navigate("/", { replace: true });
     },

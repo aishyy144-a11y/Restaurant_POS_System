@@ -95,16 +95,16 @@ const BottomNav = () => {
   const labelText = isDark ? "text-[#ababab]" : "text-gray-600";
 
   return (
-    <div className={`fixed bottom-0 left-0 right-0 ${navBg} px-6 py-2 h-auto min-h-[60px] flex justify-between items-center shadow-2xl z-[999]`}>
+    <div className={`fixed bottom-0 left-0 right-0 ${navBg} px-2 md:px-6 py-2 h-auto min-h-[60px] flex justify-around md:justify-between items-center shadow-2xl z-[999]`}>
 
       {/* HOME */}
       <button
         onClick={() => navigate("/home")}
-        className={`flex flex-col items-center justify-center text-xs font-semibold px-3 py-1 rounded-xl transition ${
+        className={`flex flex-col items-center justify-center text-[10px] md:text-xs font-semibold px-2 md:px-3 py-1 rounded-xl transition ${
           isActive("/home") ? `${activeText} ${activeBg}` : inactiveText
         }`}
       >
-        <FaHome size={22} />
+        <FaHome size={20} className="md:w-[22px] md:h-[22px]" />
         Home
       </button>
 
@@ -112,11 +112,11 @@ const BottomNav = () => {
       {!isKitchen && (
         <button
           onClick={() => navigate("/orders")}
-          className={`flex flex-col items-center justify-center text-xs font-semibold px-3 py-1 rounded-xl transition ${
+          className={`flex flex-col items-center justify-center text-[10px] md:text-xs font-semibold px-2 md:px-3 py-1 rounded-xl transition ${
             isActive("/orders") ? `${activeText} ${activeBg}` : inactiveText
           }`}
         >
-          <MdOutlineReorder size={22} />
+          <MdOutlineReorder size={20} className="md:w-[22px] md:h-[22px]" />
           Orders
         </button>
       )}
@@ -125,14 +125,14 @@ const BottomNav = () => {
       {!isWaiter && !isCashier && (
         <button
           onClick={() => navigate("/kitchen")}
-          className={`flex flex-col items-center justify-center text-xs font-semibold px-3 py-1 rounded-xl transition relative ${
+          className={`flex flex-col items-center justify-center text-[10px] md:text-xs font-semibold px-2 md:px-3 py-1 rounded-xl transition relative ${
             isActive("/kitchen") ? `${activeText} ${activeBg}` : inactiveText
           }`}
         >
           <div className="relative">
-            <MdKitchen size={22} />
+            <MdKitchen size={20} className="md:w-[22px] md:h-[22px]" />
             {kitchenOrdersCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border-2 border-white animate-pulse">
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[8px] md:text-[10px] font-bold h-3.5 w-3.5 md:h-4 md:w-4 rounded-full flex items-center justify-center border-2 border-white animate-pulse">
                 {kitchenOrdersCount}
               </span>
             )}
@@ -145,11 +145,11 @@ const BottomNav = () => {
       {!isKitchen && (
         <button
           onClick={() => navigate("/hall-selection")}
-          className={`flex flex-col items-center justify-center text-xs font-semibold px-3 py-1 rounded-xl transition ${
+          className={`flex flex-col items-center justify-center text-[10px] md:text-xs font-semibold px-2 md:px-3 py-1 rounded-xl transition ${
             isActive("/tables") || isActive("/hall-selection") ? `${activeText} ${activeBg}` : inactiveText
           }`}
         >
-          <MdTableBar size={24} />
+          <MdTableBar size={22} className="md:w-[24px] md:h-[24px]" />
           Tables
         </button>
       )}
@@ -158,11 +158,11 @@ const BottomNav = () => {
       {!isKitchen && (
         <button
           onClick={() => navigate("/menu", { state: { hideCart: true } })}
-          className={`flex flex-col items-center justify-center text-xs font-semibold px-3 py-1 rounded-xl transition ${
+          className={`flex flex-col items-center justify-center text-[10px] md:text-xs font-semibold px-2 md:px-3 py-1 rounded-xl transition ${
             isActive("/menu") ? `${activeText} ${activeBg}` : inactiveText
           }`}
         >
-          <MdRestaurantMenu size={24} />
+          <MdRestaurantMenu size={22} className="md:w-[24px] md:h-[24px]" />
           Menu
         </button>
       )}

@@ -8,15 +8,15 @@ const MiniCard = ({title, icon, number, footerNum}) => {
   const textColor = isDark ? "text-[#f5f5f5]" : "text-blue-900";
   
   return (
-    <div className={`${cardBg} py-5 px-5 rounded-lg w-full sm:w-[50%]`}>
+    <div className={`${cardBg} py-4 md:py-5 px-4 md:px-5 rounded-lg w-full sm:w-[50%]`}>
         <div className='flex items-start justify-between'>
-            <h1 className={`${textColor} text-lg font-semibold tracking-wide`}>{title}</h1>
-            <button className={`${title === "Total Earnings" ? "bg-[#02ca3a]" : "bg-[#f6b100]"} p-3 rounded-lg text-[#f5f5f5] text-2xl`}>{icon}</button>
+            <h1 className={`${textColor} text-base md:text-lg font-semibold tracking-wide`}>{title}</h1>
+            <button className={`${title === "Total Earnings" ? "bg-[#02ca3a]" : "bg-[#f6b100]"} p-2 md:p-3 rounded-lg text-[#f5f5f5] text-xl md:text-2xl`}>{icon}</button>
         </div>
         <div>
-            <h1 className={`${textColor} text-4xl font-bold mt-5`}>{
+            <h1 className={`${textColor} text-2xl md:text-4xl font-bold mt-3 md:mt-5`}>{
               title === "Total Earnings" ? `PKR ${number}` : number}</h1>
-            <h1 className={`${textColor} text-lg mt-2`}>
+            <h1 className={`${textColor} text-sm md:text-lg mt-1 md:mt-2`}>
               <span className={Number(footerNum) >= 0 ? 'text-[#02ca3a]' : 'text-red-500'}>
                 {Number(footerNum) > 0 ? "+" : ""}{footerNum}%
               </span> than yesterday

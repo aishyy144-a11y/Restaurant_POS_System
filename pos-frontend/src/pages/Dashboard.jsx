@@ -113,7 +113,7 @@ const Dashboard = () => {
 
   return (
     <div className={`${bgColor} min-h-[calc(100vh-5rem)] pb-6`}>
-      <div className="container mx-auto px-4 md:px-3 pt-10 mb-6 flex flex-wrap justify-between gap-y-4 items-center">
+      <div className="container mx-auto px-4 md:px-3 pt-6 md:pt-10 mb-6 flex flex-wrap justify-center md:justify-between gap-3 md:gap-y-4 items-center">
         <button
           onClick={() => navigate("/")}
           className="bg-[#025cca] p-2 text-xl font-bold rounded-full text-white hover:bg-[#024aa8] transition flex-shrink-0"
@@ -122,25 +122,27 @@ const Dashboard = () => {
           <IoArrowBackOutline />
         </button>
 
-        {filteredButtons.map((btn, index) => (
-          <button
-            key={index}
-            onClick={() => handleOpenModal(btn.action)}
-            className={`${buttonBg} ${textColor} p-3 w-28 h-24 rounded-xl flex flex-col items-center justify-center gap-1 hover:scale-105 transition-transform duration-300 shadow-md`}
-          >
-            <div className="text-2xl text-blue-600">{btn.icon}</div>
-            <span className="font-semibold text-xs text-center leading-tight">{btn.label}</span>
-          </button>
-        ))}
+        <div className="flex flex-wrap justify-center gap-2 md:gap-3 w-full md:w-auto">
+          {filteredButtons.map((btn, index) => (
+            <button
+              key={index}
+              onClick={() => handleOpenModal(btn.action)}
+              className={`${buttonBg} ${textColor} p-2 md:p-3 w-20 h-20 md:w-28 md:h-24 rounded-xl flex flex-col items-center justify-center gap-1 hover:scale-105 transition-transform duration-300 shadow-md`}
+            >
+              <div className="text-xl md:text-2xl text-blue-600">{btn.icon}</div>
+              <span className="font-semibold text-[10px] md:text-xs text-center leading-tight">{btn.label}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="container mx-auto flex flex-nowrap items-center justify-center gap-2 pb-6 px-4 md:px-3">
+      <div className="container mx-auto flex overflow-x-auto items-center justify-start md:justify-center gap-2 pb-6 px-4 md:px-3 scrollbar-hide">
         {tabs.map((tab) => {
           return (
             <button
               key={tab}
               className={`
-              px-4 py-2 rounded-md ${textColor} font-medium text-sm flex items-center gap-2 whitespace-nowrap ${
+              px-3 md:px-4 py-1.5 md:py-2 rounded-md ${textColor} font-medium text-xs md:text-sm flex items-center gap-2 whitespace-nowrap ${
                 activeTab === tab
                   ? activeBg
                   : `${buttonBg} ${buttonHover}`

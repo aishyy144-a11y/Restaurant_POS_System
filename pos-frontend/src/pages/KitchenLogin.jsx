@@ -71,9 +71,9 @@ const KitchenLogin = () => {
   const headingColor = isDark ? "text-yellow-400" : "text-yellow-500";
 
   return (
-    <div className="flex h-screen w-full overflow-hidden">
+    <div className="flex flex-col md:flex-row min-h-screen w-full overflow-y-auto md:overflow-hidden">
       {/* Left Section */}
-      <div className="w-1/2 relative flex items-center justify-center bg-cover">
+      <div className="hidden md:flex md:w-1/2 relative items-center justify-center bg-cover">
         {/* BG Image */}
         <img className="w-full h-full object-cover" src={restaurant} alt="Restaurant Image" />
 
@@ -90,7 +90,7 @@ const KitchenLogin = () => {
       </div>
 
       {/* Right Section */}
-      <div className={`w-1/2 h-full ${rightBg} p-10 flex flex-col justify-center`}>
+      <div className={`w-full md:w-1/2 min-h-screen md:h-full ${rightBg} p-6 md:p-10 flex flex-col justify-center`}>
         <div className="flex flex-col items-center gap-2">
           <img
             src={logoSrc}

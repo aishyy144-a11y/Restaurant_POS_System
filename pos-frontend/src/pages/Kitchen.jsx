@@ -56,18 +56,18 @@ const Kitchen = () => {
   const textColor = isDark ? "text-[#f5f5f5]" : "text-blue-900";
 
   return (
-    <section className={`${bgColor} min-h-screen flex flex-col pb-20`}>
-      <div className="flex items-center justify-between px-10 py-4">
+    <section className={`${bgColor} min-h-screen flex flex-col pb-24 md:pb-20`}>
+      <div className="flex items-center justify-between px-4 md:px-10 py-4">
         <div className="flex items-center gap-4">
           <BackButton />
-          <h1 className={`${textColor} text-2xl font-bold tracking-wider`}>
+          <h1 className={`${textColor} text-xl md:text-2xl font-bold tracking-wider`}>
             Kitchen Display
           </h1>
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-10 pb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="flex-1 overflow-y-auto px-4 md:px-10 pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {kitchenOrders.length > 0 ? (
             kitchenOrders.map((order) => (
               <OrderCard key={order._id} order={order} isKitchen={true} />

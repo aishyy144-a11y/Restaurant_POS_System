@@ -76,68 +76,67 @@ const OrderCard = ({ order, isKitchen = false }) => {
   console.log(order);
   return (
     <div 
-      className={`w-full ${cardBg} p-4 rounded-lg mb-4 ${hoverClass} relative`}
+      className={`w-full ${cardBg} p-3 md:p-4 rounded-lg mb-4 ${hoverClass} relative`}
     >
       
-      <div className="flex items-center gap-5">
-        <button className="bg-[#f6b100] p-3 text-xl font-bold rounded-lg">
+      <div className="flex items-center gap-3 md:gap-5">
+        <button className="bg-[#f6b100] p-2 md:p-3 text-lg md:text-xl font-bold rounded-lg min-w-[48px] md:min-w-[56px]">
           {getAvatarName(order.customerDetails.name)}
         </button>
-        <div className="flex items-center justify-between w-[100%]">
-          <div className="flex flex-col items-start gap-1">
-            <h1 className={`${textColor} text-lg font-semibold tracking-wide`}>
+        <div className="flex items-start md:items-center justify-between w-[100%] gap-2">
+          <div className="flex flex-col items-start gap-0.5 md:gap-1 min-w-0">
+            <h1 className={`${textColor} text-base md:text-lg font-semibold tracking-wide truncate w-full`}>
               {order.customerDetails.name}
             </h1>
-            <p className={`${textSecondary} text-sm`}>#{Math.floor(new Date(order.createdAt).getTime())} / Dine in</p>
-            <p className={`${textSecondary} text-sm`}>Table <FaLongArrowAltRight className={`${textSecondary} ml-2 inline`} /> {order.table?.tableNo || "N/A"}</p>
+            <p className={`${textSecondary} text-[10px] md:text-sm truncate w-full`}>#{Math.floor(new Date(order.createdAt).getTime())} / Dine in</p>
+            <p className={`${textSecondary} text-xs md:text-sm whitespace-nowrap`}>Table <FaLongArrowAltRight className={`${textSecondary} mx-1 md:ml-2 inline`} /> {order.table?.tableNo || "N/A"}</p>
           </div>
-          <div className="flex flex-col items-end gap-2">
+          <div className="flex flex-col items-end gap-1 md:gap-2 shrink-0">
             {order.orderStatus === "Ready" ? (
               <>
-                <p className={`text-green-600 ${isDark ? "bg-[#2e4a40]" : "bg-white"} px-2 py-1 rounded-lg`}>
-                  <FaCheckDouble className="inline mr-2" /> {order.orderStatus}
+                <p className={`text-green-600 ${isDark ? "bg-[#2e4a40]" : "bg-white"} px-2 py-0.5 md:py-1 rounded-lg text-xs md:text-sm whitespace-nowrap flex items-center`}>
+                  <FaCheckDouble className="mr-1 md:mr-2" /> {order.orderStatus}
                 </p>
-                <p className={`${textSecondary} text-sm`}>
-                  <FaCircle className="inline mr-2 text-green-600" /> Ready to
-                  serve
+                <p className={`${textSecondary} text-[10px] md:text-sm text-right`}>
+                  <FaCircle className="text-green-600 inline mr-1" /> Ready to serve
                 </p>
               </>
             ) : order.orderStatus === "Completed" ? (
               <>
-                <p className={`text-blue-600 ${isDark ? "bg-[#2e3b4a]" : "bg-white"} px-2 py-1 rounded-lg`}>
-                  <FaCheckDouble className="inline mr-2" /> {order.orderStatus}
+                <p className={`text-blue-600 ${isDark ? "bg-[#2e3b4a]" : "bg-white"} px-2 py-0.5 md:py-1 rounded-lg text-xs md:text-sm whitespace-nowrap flex items-center`}>
+                  <FaCheckDouble className="mr-1 md:mr-2" /> {order.orderStatus}
                 </p>
-                <p className={`${textSecondary} text-sm`}>
-                  <FaCircle className="inline mr-2 text-blue-600" /> Order has been completed
+                <p className={`${textSecondary} text-[10px] md:text-sm text-right`}>
+                  <FaCircle className="text-blue-600 inline mr-1" /> Order has been completed
                 </p>
               </>
             ) : (
               <>
-                <p className={`text-yellow-600 ${isDark ? "bg-[#4a452e]" : "bg-white"} px-2 py-1 rounded-lg`}>
-                  <FaCircle className="inline mr-2" /> {order.orderStatus}
+                <p className={`text-yellow-600 ${isDark ? "bg-[#4a452e]" : "bg-white"} px-2 py-0.5 md:py-1 rounded-lg text-xs md:text-sm whitespace-nowrap flex items-center`}>
+                  <FaCircle className="mr-1 md:mr-2" /> {order.orderStatus}
                 </p>
-                <p className={`${textSecondary} text-sm`}>
-                  <FaCircle className="inline mr-2 text-yellow-600" /> Preparing your order
+                <p className={`${textSecondary} text-[10px] md:text-sm text-right`}>
+                  <FaCircle className="text-yellow-600 inline mr-1" /> Preparing your order
                 </p>
               </>
             )}
           </div>
         </div>
       </div>
-      <div className={`flex justify-between items-start mt-4 ${textSecondary}`}>
-        <p className="mt-1">{formatDateAndTime(order.createdAt)}</p>
-        <div className="flex flex-col items-end gap-1">
+      <div className={`flex justify-between items-start mt-4 ${textSecondary} gap-2`}>
+        <p className="mt-1 text-[10px] md:text-sm">{formatDateAndTime(order.createdAt)}</p>
+        <div className="flex flex-col items-end gap-1 min-w-0">
           {order.items?.map((item, idx) => (
-            <p key={idx} className="text-sm">
-              {item.name} <span className="font-bold">x{item.quantity}</span>
+            <p key={idx} className="text-[10px] md:text-sm text-right truncate w-full">
+              {item.name} <span className="font-bold whitespace-nowrap">x{item.quantity}</span>
             </p>
           ))}
         </div>
       </div>
       <hr className={`w-full mt-4 border-t-1 ${borderColor}`} />
       <div className="flex items-center justify-between mt-4">
-        <h1 className={`${textColor} text-lg font-semibold`}>Total</h1>
-        <p className={`${textColor} text-lg font-semibold`}>PKR {order.bills.totalWithTax.toFixed(2)}</p>
+        <h1 className={`${textColor} text-base md:text-lg font-semibold`}>Total</h1>
+        <p className={`${textColor} text-base md:text-lg font-semibold whitespace-nowrap`}>PKR {order.bills.totalWithTax.toFixed(2)}</p>
       </div>
 
       {isKitchen && order.orderStatus === "In Progress" && userRole !== 'admin' && userRole !== 'manager' && (

@@ -24,28 +24,28 @@ const HallSelection = () => {
   const hoverClass = "hover:scale-105 transition-transform duration-300 cursor-pointer shadow-lg";
 
   return (
-    <section className={`${bgColor} h-[calc(100vh-6rem)] overflow-hidden flex flex-col items-center pt-20 p-4 relative`}>
-       <div className="absolute top-10 left-10">
+    <section className={`${bgColor} min-h-screen flex flex-col items-center pt-12 md:pt-20 p-4 relative pb-24`}>
+       <div className="absolute top-6 md:top-10 left-6 md:left-10">
           <BackButton />
        </div>
-       <h1 className={`${textColor} text-3xl font-bold mb-12`}>Choose Hall</h1>
-       <div className="flex flex-col md:flex-row gap-8">
+       <h1 className={`${textColor} text-2xl md:text-3xl font-bold mb-8 md:mb-12 mt-12 md:mt-0`}>Choose Hall</h1>
+       <div className="flex flex-col md:flex-row gap-6 md:gap-8">
           {/* Family Hall */}
           <div 
              onClick={() => handleSelect("Family Hall")}
-             className={`${cardBg} ${hoverClass} p-10 rounded-2xl flex flex-col items-center justify-center gap-4 w-64 h-64 border-b-4 border-pink-500`}
+             className={`${cardBg} ${hoverClass} p-6 md:p-10 rounded-2xl flex flex-col items-center justify-center gap-3 md:gap-4 w-56 h-56 md:w-64 md:h-64 border-b-4 border-pink-500`}
           >
-             <MdFamilyRestroom size={60} className="text-pink-500" />
-             <h2 className={`${textColor} text-2xl font-bold`}>Family Hall</h2>
+             <MdFamilyRestroom className="text-pink-500 text-5xl md:text-[60px]" />
+             <h2 className={`${textColor} text-xl md:text-2xl font-bold`}>Family Hall</h2>
           </div>
 
           {/* Gents Hall */}
           <div 
              onClick={() => handleSelect("Gents Hall")}
-             className={`${cardBg} ${hoverClass} p-10 rounded-2xl flex flex-col items-center justify-center gap-4 w-64 h-64 border-b-4 border-blue-500`}
+             className={`${cardBg} ${hoverClass} p-6 md:p-10 rounded-2xl flex flex-col items-center justify-center gap-3 md:gap-4 w-56 h-56 md:w-64 md:h-64 border-b-4 border-blue-500`}
           >
-             <MdPeople size={60} className="text-blue-500" />
-             <h2 className={`${textColor} text-2xl font-bold`}>Gents Hall</h2>
+             <MdPeople className="text-blue-500 text-5xl md:text-[60px]" />
+             <h2 className={`${textColor} text-xl md:text-2xl font-bold`}>Gents Hall</h2>
           </div>
        </div>
        <BottomNav />

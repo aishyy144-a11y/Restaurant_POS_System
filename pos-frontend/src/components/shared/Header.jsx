@@ -48,7 +48,7 @@ const Header = () => {
   const userBg = isDark ? "bg-[#1f1f1f]" : "bg-white";
 
   return (
-    <header className={`w-full sticky top-0 z-50 flex justify-between items-center py-4 px-6 ${headerBg} shadow-md`}>
+    <header className={`w-full sticky top-0 z-50 flex justify-between items-center py-3 md:py-4 px-4 md:px-6 ${headerBg} shadow-md`}>
       
       {/* LOGO */}
       <div
@@ -57,74 +57,58 @@ const Header = () => {
       >
         <img
           src={logoSrc}
-          className={`h-9 w-9 object-contain ${isDark ? "" : "rounded"}`}
+          className={`h-7 w-7 md:h-9 md:w-9 object-contain ${isDark ? "" : "rounded"}`}
           alt="logo"
         />
-        <h1 className={`text-xl ${isDark ? 'font-semibold' : 'font-bold'} ${textColor} tracking-wide`}>
+        <h1 className={`text-lg md:text-xl ${isDark ? 'font-semibold' : 'font-bold'} ${textColor} tracking-wide hidden sm:block`}>
           Aishelicious
         </h1>
       </div>
 
-      {/* SEARCH BAR (REMOVED) */}
-      {/* 
-      <div className={`hidden md:flex items-center gap-3 ${searchBg} rounded-full px-5 py-2 w-[350px] lg:w-[500px]`}>
-        <FaSearch className={searchIcon} />
-        <input
-          type="text"
-          placeholder="Search"
-          className={`w-full bg-transparent outline-none ${searchInput}`}
-        />
-      </div> 
-      */}
-
       {/* USER SECTION */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 md:gap-4">
         
         <button
           onClick={handleThemeToggle}
-          className={`${buttonBg} rounded-full p-3 ${buttonHover} transition`}
+          className={`${buttonBg} rounded-full p-2 md:p-3 ${buttonHover} transition`}
           title={isDark ? "Switch to Light Theme" : "Switch to Dark Theme"}
         >
           {isDark ? (
-            <FaSun className={`${textColor} text-2xl`} />
+            <FaSun className={`${textColor} text-xl md:text-2xl`} />
           ) : (
-            <FaMoon className={`${textColor} text-2xl`} />
+            <FaMoon className={`${textColor} text-xl md:text-2xl`} />
           )}
         </button>
 
         {["admin", "sub admin", "cashier", "manager"].includes(userData.role?.toLowerCase().trim()) && (
             <button
               onClick={() => navigate("/dashboard")}
-              className={`${buttonBg} rounded-full p-3 ${buttonHover} transition`}
+              className={`${buttonBg} rounded-full p-2 md:p-3 ${buttonHover} transition`}
+              title="Dashboard"
             >
-              <MdDashboard className={`${textColor} text-2xl`} />
+              <MdDashboard className={`${textColor} text-xl md:text-2xl`} />
             </button>
         )}
 
-        {/* NOTIFICATION (REMOVED) */}
-        {/* 
-        <button className={`${buttonBg} rounded-full p-3 ${buttonHover} transition`}>
-          <FaBell className={`${textColor} text-2xl`} />
-        </button> 
-        */}
-
-        {/* USER ICON + INFO + LOGOUT */}
-        <div className={`flex items-center gap-3 ${userBg} px-3 py-2 rounded-full`}>
-          <FaUserCircle className={`${textColor} text-4xl`} />
-
-          <div className="hidden sm:flex flex-col">
-            <h1 className={`text-sm ${textColor} font-semibold`}>
-              {userData.role === "admin" ? "Ayesha kareem" : userData.name || "TEST USER"}
+        <div className={`flex items-center gap-2 ${userBg} rounded-full px-2 md:px-4 py-1 md:py-2 shadow-sm`}>
+          <FaUserCircle className={`${textColor} text-xl md:text-2xl`} />
+          <div className="flex flex-col items-start leading-tight hidden xs:block">
+            <h1 className={`text-xs md:text-sm ${textColor} font-semibold truncate max-w-[80px] md:max-w-none`}>
+              {userData.name || "Guest"}
             </h1>
-            <p className={`text-xs ${textSecondary}`}>{userData.role || "Role"}</p>
+            <p className={`text-[10px] md:text-xs ${textSecondary} capitalize`}>
+              {userData.role || "Role"}
+            </p>
           </div>
-
-          <IoLogOut
-            onClick={handleLogout}
-            className={`${textColor} cursor-pointer hover:text-red-400 transition`}
-            size={28}
-          />
         </div>
+
+        <button
+          onClick={handleLogout}
+          className={`${buttonBg} rounded-full p-2 md:p-3 ${buttonHover} transition text-red-500`}
+          title="Logout"
+        >
+          <IoLogOut className="text-xl md:text-2xl" />
+        </button>
       </div>
     </header>
   );

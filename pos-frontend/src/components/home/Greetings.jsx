@@ -35,18 +35,18 @@ const Greetings = () => {
   };
 
   return (
-    <div className="flex justify-between items-center px-8 mt-5">
+    <div className="flex flex-col md:flex-row justify-between items-start md:items-center px-4 md:px-8 mt-4 md:mt-5 gap-4">
       <div>
-        <h1 className={`${textPrimary} text-2xl font-semibold tracking-wide`}>
+        <h1 className={`${textPrimary} text-xl md:text-2xl font-semibold tracking-wide`}>
           {getGreeting()}, {userData.name || "TEST USER"}
         </h1>
-        <p className={`${textSecondary} text-sm`}>
+        <p className={`${textSecondary} text-xs md:text-sm`}>
           Give your best services for customers 😀
         </p>
       </div>
-      <div>
-        <h1 className={`${textPrimary} text-3xl font-bold tracking-wide w-[130px]`}>{formatTime(dateTime)}</h1>
-        <p className={`${textSecondary} text-sm`}>{formatDate(dateTime)}</p>
+      <div className="flex flex-col items-start md:items-end">
+        <h1 className={`${textPrimary} text-2xl md:text-3xl font-bold tracking-wide w-auto md:w-[130px]`}>{formatTime(dateTime)}</h1>
+        <p className={`${textSecondary} text-xs md:text-sm`}>{formatDate(dateTime)}</p>
       </div>
     </div>
   );

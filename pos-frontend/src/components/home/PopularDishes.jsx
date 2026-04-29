@@ -28,34 +28,34 @@ const PopularDishes = ({ isRestricted }) => {
   const popularDishes = filteredDishes.slice(0, isRestricted ? 9 : 8);
 
   return (
-    <div className={`${isRestricted ? 'mt-0' : 'mt-6 pr-6'}`}>
+    <div className={`${isRestricted ? 'mt-0' : 'mt-4 md:mt-6 pr-0 md:pr-6'}`}>
       <div className={`${cardBg} w-full rounded-lg ${isRestricted ? 'min-h-0 bg-transparent' : ''}`}>
-        <div className={`flex justify-between items-center px-6 ${isRestricted ? 'py-2' : 'py-4'}`}>
-          <h1 className={`${textColor} text-lg font-semibold tracking-wide`}>
+        <div className={`flex justify-between items-center px-4 md:px-6 ${isRestricted ? 'py-2' : 'py-3 md:py-4'}`}>
+          <h1 className={`${textColor} text-base md:text-lg font-semibold tracking-wide`}>
             Popular Dishes
           </h1>
         </div>
 
-        <div className={`${isRestricted ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2' : 'overflow-y-scroll h-[800px] scrollbar-hide'}`}>
+        <div className={`${isRestricted ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 p-2' : 'overflow-y-auto h-[400px] md:h-[600px] lg:h-[800px] scrollbar-hide'}`}>
           {isLoading ? (
-             <p className={`text-center py-4 ${textSecondary} col-span-full`}>Loading...</p>
+             <p className={`text-center py-4 ${textSecondary} col-span-full text-sm`}>Loading...</p>
           ) : popularDishes.length === 0 ? (
-             <p className={`text-center py-4 ${textSecondary} col-span-full`}>No sales yet.</p>
+             <p className={`text-center py-4 ${textSecondary} col-span-full text-sm`}>No sales yet.</p>
           ) : (
           popularDishes.map((dish, index) => {
             return (
               <div
                 key={dish._id || index}
-                className={`flex items-center gap-4 ${itemBg} rounded-[15px] ${isRestricted ? 'px-6 py-6' : 'px-6 py-4'} ${isRestricted ? '' : 'mt-4 mx-6'}`}
+                className={`flex items-center gap-3 md:gap-4 ${itemBg} rounded-[15px] ${isRestricted ? 'px-4 md:px-6 py-4 md:py-6' : 'px-4 md:px-6 py-3 md:py-4'} ${isRestricted ? '' : 'mt-3 md:mt-4 mx-3 md:mx-6'}`}
               >
-                <h1 className={`${textColor} font-bold text-xl mr-4`}>{(index + 1) < 10 ? `0${index + 1}` : index + 1}</h1>
+                <h1 className={`${textColor} font-bold text-lg md:text-xl mr-2 md:mr-4`}>{(index + 1) < 10 ? `0${index + 1}` : index + 1}</h1>
                 <div 
-                    className="w-[50px] h-[50px] rounded-full bg-cover bg-center bg-gray-200 flex-shrink-0"
+                    className="w-[40px] h-[40px] md:w-[50px] md:h-[50px] rounded-full bg-cover bg-center bg-gray-200 flex-shrink-0"
                     style={{ backgroundImage: dish.image ? `url(${getImageUrl(dish.image)})` : undefined }}
                 ></div>
                 <div>
-                  <h1 className={`${textColor} font-semibold tracking-wide`}>{dish.name}</h1>
-                  <p className={`${textColor} text-sm font-semibold mt-1`}>
+                  <h1 className={`${textColor} text-sm md:text-base font-semibold tracking-wide truncate max-w-[120px] md:max-w-none`}>{dish.name}</h1>
+                  <p className={`${textColor} text-xs md:text-sm font-semibold mt-0.5 md:mt-1`}>
                     <span className={textSecondary}>Orders: </span>
                     {dish.orderCount}
                   </p>

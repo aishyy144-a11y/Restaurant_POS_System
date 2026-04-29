@@ -29,25 +29,25 @@ const Menu = () => {
   const borderColor = isDark ? "border-[#2a2a2a]" : "border-gray-200";
 
   return (
-    <section className={`${bgColor} min-h-screen flex gap-3`}>
+    <section className={`${bgColor} min-h-screen flex flex-col lg:flex-row gap-3`}>
       {/* Left Div */}
-      <div className={`${hideCart ? "w-full" : "flex-[3]"} pb-24`}>
-        <div className="flex items-center justify-between px-10 py-4">
+      <div className={`${hideCart ? "w-full" : "w-full lg:flex-[3]"} pb-12 lg:pb-24`}>
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between px-4 md:px-10 py-4 gap-4">
           <div className="flex items-center gap-4">
             <BackButton />
-            <h1 className={`${textColor} text-2xl font-bold tracking-wider`}>
+            <h1 className={`${textColor} text-xl md:text-2xl font-bold tracking-wider`}>
               Menu
             </h1>
           </div>
           {!hideCart && (
             <div className="flex items-center justify-around gap-4">
               <div className="flex items-center gap-3 cursor-pointer">
-                <MdRestaurantMenu className={`${textColor} text-4xl`} />
+                <MdRestaurantMenu className={`${textColor} text-3xl md:text-4xl`} />
                 <div className="flex flex-col items-start">
-                  <h1 className={`text-md ${textColor} font-semibold tracking-wide`}>
+                  <h1 className={`text-sm md:text-md ${textColor} font-semibold tracking-wide`}>
                     {customerData.customerName || "Customer Name"}
                   </h1>
-                  <p className={`text-xs ${textSecondary} font-medium`}>
+                  <p className={`text-[10px] md:text-xs ${textSecondary} font-medium`}>
                     Table : {customerData.table?.tableNo || "N/A"}
                   </p>
                 </div>
@@ -61,7 +61,7 @@ const Menu = () => {
 
       {/* Right Div */}
       {!hideCart && (
-        <div className={`flex-[1] ${rightBg} mt-4 mr-3 rounded-lg pt-2 flex flex-col pb-24`}>
+        <div className={`w-full lg:flex-[1] ${rightBg} lg:mt-4 lg:mr-3 lg:rounded-lg pt-2 flex flex-col pb-24 md:pb-36 lg:pb-24 px-4 md:px-0`}>
           <CustomerInfo />
           <hr className={`${borderColor} border-t-2`} />
 

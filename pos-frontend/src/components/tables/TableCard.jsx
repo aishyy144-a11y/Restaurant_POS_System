@@ -50,7 +50,9 @@ const TableCard = ({
     <div
       onClick={handleClick}
       className={`
-        w-[300px] 
+        w-full
+        max-w-[300px]
+        md:w-[300px] 
         ${cardHover} 
         transition-transform duration-300
         rounded-lg 
@@ -59,6 +61,7 @@ const TableCard = ({
         overflow-hidden
         bg-cover bg-center bg-no-repeat
         shadow-lg
+        mx-auto
       `}
       style={{ backgroundImage: `url(${tableImg})` }}
     >

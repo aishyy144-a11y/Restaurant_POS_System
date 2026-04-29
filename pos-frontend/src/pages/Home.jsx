@@ -40,17 +40,17 @@ const Home = () => {
   const isRestricted = ["waiter", "kitchen"].includes(user?.role?.toLowerCase().trim());
 
   return (
-    <section className={`${bgColor} ${isRestricted ? 'h-[calc(100vh-80px)] overflow-hidden' : 'min-h-screen overflow-y-auto'} flex flex-col ${isRestricted ? 'pb-0' : 'pb-36'}`}>
+    <section className={`${bgColor} ${isRestricted ? 'h-[calc(100vh-80px)] overflow-hidden' : 'min-h-screen overflow-y-auto'} flex flex-col ${isRestricted ? 'pb-0' : 'pb-24 md:pb-36'}`}>
       {/* PAGE CONTENT WRAPPER */}
       <div className={`flex ${isRestricted ? 'flex-col' : 'flex-col lg:flex-row'} ${isRestricted ? 'gap-1' : 'gap-3'} flex-1 ${isRestricted ? 'overflow-hidden' : 'overflow-y-auto'}`}>
 
         {/* Left Side (or Top for Restricted) */}
-        <div className={`${isRestricted ? 'w-full mb-0' : 'flex-[3]'} px-4`}>
+        <div className={`${isRestricted ? 'w-full mb-0' : 'flex-[3]'} px-3 md:px-4`}>
           <Greetings />
 
           {!isRestricted && (
             <>
-              <div className="flex flex-col sm:flex-row items-center w-full gap-3 mt-8">
+              <div className="flex flex-col sm:flex-row items-center w-full gap-3 mt-6 md:mt-8">
                 <MiniCard
                   title="Today Earnings"
                   icon={<BsCashCoin />}
@@ -71,7 +71,7 @@ const Home = () => {
         </div>
 
         {/* Right Side (or Bottom for Restricted) */}
-        <div className={`${isRestricted ? 'w-full mt-0 flex-1 overflow-y-auto scrollbar-hide pb-16' : 'flex-[2]'} px-4`}>
+        <div className={`${isRestricted ? 'w-full mt-0 flex-1 overflow-y-auto scrollbar-hide pb-16' : 'flex-[2]'} px-3 md:px-4`}>
           <PopularDishes isRestricted={isRestricted} />
         </div>
       </div>

@@ -47,7 +47,7 @@ const RoleSelection = () => {
   return (
     <div className="flex h-screen w-full overflow-hidden relative">
       {/* Left Section (Image) */}
-      <div className="w-1/2 relative flex items-center justify-center bg-cover">
+      <div className="hidden lg:flex lg:w-1/2 relative items-center justify-center bg-cover">
         {/* BG Image */}
         <img className="w-full h-full object-cover" src={restaurant} alt="Restaurant Image" />
 
@@ -64,73 +64,73 @@ const RoleSelection = () => {
       </div>
 
       {/* Right Section (Options) */}
-      <div className={`w-1/2 h-full ${rightBg} flex flex-col items-center justify-center p-4`}>
+      <div className={`w-full lg:w-1/2 h-full ${rightBg} flex flex-col items-center justify-center p-4 overflow-y-auto`}>
         <div className="w-full max-w-xl">
-          <div className="text-center mb-6">
+          <div className="text-center mb-6 mt-4">
             <img src={logoSrc} alt="Logo" className="w-16 mx-auto mb-2" />
-            <h1 className={`${textColor} text-2xl font-['cursive'] font-bold mb-1`}>Welcome to Aishelicious POS System</h1>
+            <h1 className={`${textColor} text-xl md:text-2xl font-['cursive'] font-bold mb-1`}>Welcome to Aishelicious POS System</h1>
             <p className={`${isDark ? "text-gray-400" : "text-gray-600"} text-sm`}>Select your role to continue</p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4 pb-8">
             {/* Admin Option */}
             <div 
               onClick={() => handleRoleSelect("admin")}
-              className={`${cardBg} ${hoverClass} w-[calc(50%-0.5rem)] p-4 rounded-xl flex flex-col items-center justify-center gap-2 border-b-4 border-blue-600`}
+              className={`${cardBg} ${hoverClass} w-[calc(50%-0.5rem)] md:w-[calc(33.33%-1rem)] p-4 rounded-xl flex flex-col items-center justify-center gap-2 border-b-4 border-blue-600`}
             >
-              <div className="bg-blue-100 p-2 rounded-full text-blue-600 text-2xl">
+              <div className="bg-blue-100 p-2 rounded-full text-blue-600 text-xl md:text-2xl">
                 <FaUserShield />
               </div>
-              <h2 className={`${textColor} text-base font-bold`}>Admin</h2>
-              <p className="text-gray-500 text-center text-[10px]">Access dashboard & settings</p>
+              <h2 className={`${textColor} text-sm md:text-base font-bold text-center`}>Admin</h2>
+              <p className="text-gray-500 text-center text-[10px] hidden md:block">Access dashboard & settings</p>
             </div>
 
             {/* Manager Option */}
             <div 
               onClick={() => handleRoleSelect("manager")}
-              className={`${cardBg} ${hoverClass} w-[calc(50%-0.5rem)] p-4 rounded-xl flex flex-col items-center justify-center gap-2 border-b-4 border-purple-600`}
+              className={`${cardBg} ${hoverClass} w-[calc(50%-0.5rem)] md:w-[calc(33.33%-1rem)] p-4 rounded-xl flex flex-col items-center justify-center gap-2 border-b-4 border-purple-600`}
             >
-              <div className="bg-purple-100 p-2 rounded-full text-purple-600 text-2xl">
+              <div className="bg-purple-100 p-2 rounded-full text-purple-600 text-xl md:text-2xl">
                 <FaUserShield />
               </div>
-              <h2 className={`${textColor} text-base font-bold`}>Manager</h2>
-              <p className="text-gray-500 text-center text-[10px]">Access limited dashboard</p>
+              <h2 className={`${textColor} text-sm md:text-base font-bold text-center`}>Manager</h2>
+              <p className="text-gray-500 text-center text-[10px] hidden md:block">Access limited dashboard</p>
             </div>
 
             {/* Cashier Option */}
             <div 
               onClick={() => handleRoleSelect("cashier")}
-              className={`${cardBg} ${hoverClass} w-[calc(50%-0.5rem)] p-4 rounded-xl flex flex-col items-center justify-center gap-2 border-b-4 border-green-600`}
+              className={`${cardBg} ${hoverClass} w-[calc(50%-0.5rem)] md:w-[calc(33.33%-1rem)] p-4 rounded-xl flex flex-col items-center justify-center gap-2 border-b-4 border-yellow-600`}
             >
-              <div className="bg-green-100 p-2 rounded-full text-green-600 text-2xl">
+              <div className="bg-yellow-100 p-2 rounded-full text-yellow-600 text-xl md:text-2xl">
                 <FaUserTie />
               </div>
-              <h2 className={`${textColor} text-base font-bold`}>Cashier</h2>
-              <p className="text-gray-500 text-center text-[10px]">Manage orders & payments</p>
+              <h2 className={`${textColor} text-sm md:text-base font-bold text-center`}>Cashier</h2>
+              <p className="text-gray-500 text-center text-[10px] hidden md:block">Manage payments & bills</p>
             </div>
 
             {/* Waiter Option */}
             <div 
               onClick={() => handleRoleSelect("waiter")}
-              className={`${cardBg} ${hoverClass} w-[calc(50%-0.5rem)] p-4 rounded-xl flex flex-col items-center justify-center gap-2 border-b-4 border-yellow-500`}
+              className={`${cardBg} ${hoverClass} w-[calc(50%-0.5rem)] md:w-[calc(33.33%-1rem)] p-4 rounded-xl flex flex-col items-center justify-center gap-2 border-b-4 border-green-600`}
             >
-              <div className="bg-yellow-100 p-2 rounded-full text-yellow-600 text-2xl">
+              <div className="bg-green-100 p-2 rounded-full text-green-600 text-xl md:text-2xl">
                 <FaConciergeBell />
               </div>
-              <h2 className={`${textColor} text-base font-bold`}>Waiter</h2>
-              <p className="text-gray-500 text-center text-[10px]">Take orders & serve tables</p>
+              <h2 className={`${textColor} text-sm md:text-base font-bold text-center`}>Waiter</h2>
+              <p className="text-gray-500 text-center text-[10px] hidden md:block">Take orders & serve</p>
             </div>
 
             {/* Kitchen Option */}
             <div 
               onClick={() => handleRoleSelect("kitchen")}
-              className={`${cardBg} ${hoverClass} w-[calc(50%-0.5rem)] p-4 rounded-xl flex flex-col items-center justify-center gap-2 border-b-4 border-red-500`}
+              className={`${cardBg} ${hoverClass} w-[calc(50%-0.5rem)] md:w-[calc(33.33%-1rem)] p-4 rounded-xl flex flex-col items-center justify-center gap-2 border-b-4 border-red-600`}
             >
-              <div className="bg-red-100 p-2 rounded-full text-red-600 text-2xl">
-                <FaFire />
+              <div className="bg-red-100 p-2 rounded-full text-red-600 text-xl md:text-2xl">
+                <FaUtensils />
               </div>
-              <h2 className={`${textColor} text-base font-bold`}>Kitchen</h2>
-              <p className="text-gray-500 text-center text-[10px]">Manage food preparation</p>
+              <h2 className={`${textColor} text-sm md:text-base font-bold text-center`}>Kitchen</h2>
+              <p className="text-gray-500 text-center text-[10px] hidden md:block">Manage food preparation</p>
             </div>
           </div>
         </div>

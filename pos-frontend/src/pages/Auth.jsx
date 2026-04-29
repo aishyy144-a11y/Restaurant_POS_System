@@ -32,7 +32,7 @@ const Auth = () => {
   return (
     <div className="flex h-screen w-full overflow-hidden">
       {/* Left Section */}
-      <div className="w-1/2 relative flex items-center justify-center bg-cover">
+      <div className="hidden lg:flex lg:w-1/2 relative items-center justify-center bg-cover">
         {/* BG Image */}
         <img className="w-full h-full object-cover" src={restaurant} alt="Restaurant Image" />
 
@@ -49,48 +49,50 @@ const Auth = () => {
       </div>
 
       {/* Right Section */}
-      <div className={`w-1/2 h-full ${rightBg} p-10 flex flex-col justify-center`}>
-        <div className="flex flex-col items-center gap-2">
+      <div className={`w-full lg:w-1/2 h-full ${rightBg} p-6 md:p-10 flex flex-col justify-center overflow-y-auto`}>
+        <div className="flex flex-col items-center gap-2 mt-4">
           <img
             src={logoSrc}
             alt="Aishelicious Logo"
-            className={`h-14 w-14 border-2 rounded-full p-1 ${isDark ? "border-gray-600" : "border-gray-300 bg-white"}`}
+            className={`h-12 w-12 md:h-14 md:w-14 border-2 rounded-full p-1 ${isDark ? "border-gray-600" : "border-gray-300 bg-white"}`}
           />
           <h1 className={`text-lg ${isDark ? 'font-semibold' : 'font-bold'} ${textColor} tracking-wide`}>Aishelicious</h1>
         </div>
 
         {selectedRole ? (
-             <div className="mt-10 mb-10 text-center">
-               <h2 className={`text-4xl font-semibold ${headingColor} mb-2 capitalize`}>
+             <div className="mt-6 md:mt-10 mb-6 md:mb-10 text-center">
+               <h2 className={`text-3xl md:text-4xl font-semibold ${headingColor} mb-2 capitalize`}>
                  Hello {selectedRole}
                </h2>
                <p className={`${labelColor}`}>Please enter your credentials</p>
              </div>
         ) : (
-            <h2 className={`text-4xl text-center mt-10 font-semibold ${headingColor} mb-10`}>
+            <h2 className={`text-3xl md:text-4xl text-center mt-6 md:mt-10 font-semibold ${headingColor} mb-6 md:mb-10`}>
               {isRegister ? "Employee Registration" : "Employee Login"}
             </h2>
         )}
 
         {/* Components */}  
-        {isRegister ? <Register setIsRegister={setIsRegister} /> : <Login selectedRole={selectedRole} />}
+        <div className="w-full max-w-md mx-auto">
+          {isRegister ? <Register setIsRegister={setIsRegister} /> : <Login selectedRole={selectedRole} />}
+        </div>
 
 
         {!selectedRole && (
             <div className="flex justify-center mt-6">
               <p className={`text-sm ${textSecondary}`}>
                 {isRegister ? "Already have an account?" : "Don't have an account?"}
-                <a onClick={() => setIsRegister(!isRegister)} className={`${linkColor} font-semibold hover:underline cursor-pointer`}>
+                <a onClick={() => setIsRegister(!isRegister)} className={`${linkColor} font-semibold hover:underline cursor-pointer ml-1`}>
                   {isRegister ? "Log in" : "Sign up"}
                 </a>
               </p>
             </div>
         )}
 
-        <div className="mt-6">
+        <div className="mt-6 flex justify-center pb-8">
           <button 
             onClick={() => navigate(-1)} 
-            className={`${isDark ? "bg-[#1f1f1f] text-white hover:bg-[#333]" : "bg-gray-100 text-gray-700 hover:bg-gray-200"} px-4 py-2 rounded-lg transition-colors font-medium`}
+            className={`${isDark ? "bg-[#1f1f1f] text-white hover:bg-[#333]" : "bg-gray-100 text-gray-700 hover:bg-gray-200"} px-4 py-2 rounded-lg transition-colors font-medium text-sm`}
           >
             Back to Role Selection
           </button>

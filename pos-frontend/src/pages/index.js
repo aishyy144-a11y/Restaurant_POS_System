@@ -1,0 +1,13 @@
+export { default as Home } from './Home.jsx'
+export { default as Orders } from './Orders.jsx'
+export { default as Auth } from './Auth.jsx'
+export { default as Tables } from './Tables.jsx'
+export { default as Menu } from './Menu.jsx'
+export { default as Dashboard } from "./Dashboard.jsx"
+export { default as AdminLogin } from "./AdminLogin.jsx"
+export { default as RegisterPage } from "./RegisterPage.jsx"
+export { default as AddCategory } from "./AddCategory.jsx"
+export { default as AddDish } from "./AddDish.jsx"
+export { default as HallSelection } from "./HallSelection.jsx"
+export { default as Kitchen } from "./Kitchen.jsx"
+export { default as KitchenLogin } from "./KitchenLogin.jsx"

@@ -1,0 +1,140 @@
+import React from "react";
+import { useSelector } from "react-redux";
+import { keepPreviousData, useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { enqueueSnackbar } from "notistack";
+import { getAllUsers, deleteUser } from "../../https/index";
+import { FaTrash } from "react-icons/fa";
+
+const Users = () => {
+  const theme = useSelector((state) => state.theme.theme);
+  const isDark = theme === "dark";
+  const queryClient = useQueryClient();
+
+  const { data: resData, isError, isLoading, error } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      return await getAllUsers();
+    },
+    placeholderData: keepPreviousData,
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: (id) => deleteUser(id),
+    onSuccess: () => {
+        enqueueSnackbar("User deleted successfully", { variant: "success" });
+        queryClient.invalidateQueries(["users"]);
+    },
+    onError: (error) => {
+        console.error("Delete error:", error);
+        let errMsg = error?.response?.data?.message || error?.message || "Failed to delete user";
+        
+        // Custom message for 404 (Route not found vs User not found)
+        if (error?.response?.status === 404 && !error?.response?.data?.message) {
+            errMsg = "Feature not loaded. Please RESTART BACKEND server.";
+        }
+        
+        enqueueSnackbar(errMsg, { variant: "error" });
+    }
+  });
+
+  const handleDelete = (id, name) => {
+    if(!id) {
+        enqueueSnackbar("Invalid User ID", { variant: "error" });
+        return;
+    }
+    if (window.confirm(`Are you sure you want to delete user "${name}"?`)) {
+        deleteMutation.mutate(id);
+    }
+  }
+
+  if (isError) {
+    enqueueSnackbar(error?.message || "Something went wrong!", { variant: "error" });
+  }
+
+  const rawUsers = resData?.data?.data || [];
+  
+  // Sort users: Manager/Sub admin first
+  const users = [...rawUsers].sort((a, b) => {
+    const roleA = a.role?.toLowerCase();
+    const roleB = b.role?.toLowerCase();
+    const isManagerA = roleA === "sub admin" || roleA === "manager";
+    const isManagerB = roleB === "sub admin" || roleB === "manager";
+    
+    if (isManagerA && !isManagerB) return -1;
+    if (!isManagerA && isManagerB) return 1;
+    return 0;
+  });
+
+  const containerBg = isDark ? "bg-[#262626]" : "bg-sky-100";
+  const textColor = isDark ? "text-[#f5f5f5]" : "text-blue-900";
+  const theadBg = isDark ? "bg-[#333]" : "bg-sky-200";
+  const theadText = isDark ? "text-[#ababab]" : "text-blue-800";
+  const rowHover = isDark ? "hover:bg-[#333]" : "hover:bg-sky-200";
+  const borderColor = isDark ? "border-gray-600" : "border-sky-300";
+
+  if (isLoading) {
+    return <div className={`container mx-auto p-4 ${textColor}`}>Loading users...</div>;
+  }
+
+  const formatPhone = (phone) => {
+    let p = String(phone).trim().replace(/\s+/g, "").replace(/^\+/, "");
+    if (p.startsWith("92")) {
+      p = p.substring(2);
+    }
+    if (p.startsWith("0")) {
+      p = p.substring(1);
+    }
+    return `+92 ${p}`;
+  };
+
+  return (
+    <div className={`container mx-auto ${containerBg} p-4 rounded-lg`}>
+      <h2 className={`${textColor} text-xl font-semibold mb-4`}>
+        Users
+      </h2>
+      <div className="overflow-x-auto">
+        <table className={`w-full text-left ${textColor}`}>
+          <thead className={`${theadBg} ${theadText}`}>
+            <tr>
+              <th className="p-3">Name</th>
+              <th className="p-3">Email</th>
+              <th className="p-3">Phone</th>
+              <th className="p-3">User Role</th>
+              <th className="p-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.length === 0 ? (
+                <tr>
+                    <td colSpan="5" className="p-4 text-center">No users found.</td>
+                </tr>
+            ) : (
+                users.map((user, index) => (
+                <tr
+                    key={index}
+                    className={`border-b ${borderColor} ${rowHover}`}
+                >
+                    <td className="p-4">{user.name}</td>
+                    <td className="p-4">{user.email}</td>
+                    <td className="p-4">{formatPhone(user.phone)}</td>
+                    <td className="p-4 capitalize">{user.role}</td>
+                    <td className="p-4">
+                        <button 
+                            onClick={() => handleDelete(user._id, user.name)}
+                            className="text-red-500 hover:text-red-700 transition-colors"
+                            title="Delete User"
+                        >
+                            <FaTrash size={18} />
+                        </button>
+                    </td>
+                </tr>
+                ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default Users;

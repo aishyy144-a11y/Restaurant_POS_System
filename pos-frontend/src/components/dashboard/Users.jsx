@@ -88,48 +88,49 @@ const Users = () => {
   };
 
   return (
-    <div className={`container mx-auto ${containerBg} p-4 rounded-lg`}>
-      <h2 className={`${textColor} text-xl font-semibold mb-4`}>
+    <div className={`container mx-auto ${containerBg} p-2 md:p-4 rounded-lg`}>
+      <h2 className={`${textColor} text-lg md:text-xl font-semibold mb-4`}>
         Users
       </h2>
-      <div className="overflow-x-auto">
-        <table className={`w-full text-left ${textColor}`}>
+      <div className="overflow-x-auto scrollbar-hide">
+        <table className={`w-full text-left ${textColor} min-w-[600px]`}>
           <thead className={`${theadBg} ${theadText}`}>
             <tr>
-              <th className="p-3">Name</th>
-              <th className="p-3">Email</th>
-              <th className="p-3">Phone</th>
-              <th className="p-3">User Role</th>
-              <th className="p-3">Actions</th>
+              <th className="p-2 md:p-3 text-sm md:text-base">Name</th>
+              <th className="p-2 md:p-3 text-sm md:text-base">Email</th>
+              <th className="p-2 md:p-3 text-sm md:text-base">Phone</th>
+              <th className="p-2 md:p-3 text-sm md:text-base">Role</th>
+              <th className="p-2 md:p-3 text-sm md:text-base text-center">Action</th>
             </tr>
           </thead>
           <tbody>
-            {users.length === 0 ? (
-                <tr>
-                    <td colSpan="5" className="p-4 text-center">No users found.</td>
-                </tr>
-            ) : (
-                users.map((user, index) => (
-                <tr
-                    key={index}
-                    className={`border-b ${borderColor} ${rowHover}`}
-                >
-                    <td className="p-4">{user.name}</td>
-                    <td className="p-4">{user.email}</td>
-                    <td className="p-4">{formatPhone(user.phone)}</td>
-                    <td className="p-4 capitalize">{user.role}</td>
-                    <td className="p-4">
-                        <button 
-                            onClick={() => handleDelete(user._id, user.name)}
-                            className="text-red-500 hover:text-red-700 transition-colors"
-                            title="Delete User"
-                        >
-                            <FaTrash size={18} />
-                        </button>
-                    </td>
-                </tr>
-                ))
-            )}
+            {users.map((user, index) => (
+              <tr
+                key={index}
+                className={`border-b ${borderColor} ${rowHover}`}
+              >
+                <td className="p-2 md:p-4 text-sm md:text-base font-medium">{user.name}</td>
+                <td className="p-2 md:p-4 text-sm md:text-base">{user.email}</td>
+                <td className="p-2 md:p-4 text-sm md:text-base whitespace-nowrap">{formatPhone(user.phone)}</td>
+                <td className="p-2 md:p-4 text-sm md:text-base capitalize">
+                  <span className={`px-2 py-1 rounded-full text-[10px] md:text-xs font-semibold ${
+                    user.role?.toLowerCase() === 'admin' ? 'bg-red-100 text-red-700' :
+                    user.role?.toLowerCase() === 'manager' || user.role?.toLowerCase() === 'sub admin' ? 'bg-purple-100 text-purple-700' :
+                    'bg-green-100 text-green-700'
+                  }`}>
+                    {user.role}
+                  </span>
+                </td>
+                <td className="p-2 md:p-4 text-center">
+                  <button 
+                    onClick={() => handleDelete(user._id, user.name)}
+                    className="text-red-500 hover:text-red-700 transition-colors p-2"
+                  >
+                    <FaTrash size={14} className="md:w-4 md:h-4" />
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

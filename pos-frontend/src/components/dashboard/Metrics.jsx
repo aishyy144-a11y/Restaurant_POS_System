@@ -149,31 +149,31 @@ const Metrics = () => {
           </p>
         </div>
         
-        <div className="flex flex-col sm:flex-row items-center gap-3">
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto mt-2 sm:mt-0">
             {/* View Mode Toggles */}
-            <div className={`flex items-center p-1 rounded-lg ${toggleBg}`}>
+            <div className={`flex items-center p-1 rounded-lg ${toggleBg} w-full sm:w-auto justify-center`}>
                 <button 
                     onClick={() => setViewMode('daily')}
-                    className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${viewMode === 'daily' ? activeToggleBg : inactiveToggleText}`}
+                    className={`flex-1 sm:flex-none px-3 py-1.5 rounded-md text-xs md:text-sm font-medium transition-all ${viewMode === 'daily' ? activeToggleBg : inactiveToggleText}`}
                 >
                     Daily
                 </button>
                 <button 
                     onClick={() => setViewMode('monthly')}
-                    className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${viewMode === 'monthly' ? activeToggleBg : inactiveToggleText}`}
+                    className={`flex-1 sm:flex-none px-3 py-1.5 rounded-md text-xs md:text-sm font-medium transition-all ${viewMode === 'monthly' ? activeToggleBg : inactiveToggleText}`}
                 >
                     Monthly
                 </button>
                 <button 
                     onClick={() => setViewMode('yearly')}
-                    className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${viewMode === 'yearly' ? activeToggleBg : inactiveToggleText}`}
+                    className={`flex-1 sm:flex-none px-3 py-1.5 rounded-md text-xs md:text-sm font-medium transition-all ${viewMode === 'yearly' ? activeToggleBg : inactiveToggleText}`}
                 >
                     Yearly
                 </button>
             </div>
 
             {/* Dynamic Inputs based on View Mode */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-full sm:w-auto justify-center">
                 {viewMode === 'daily' && (
                     <input 
                       type="date" 
@@ -221,22 +221,22 @@ const Metrics = () => {
         </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-3 gap-4">
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
 
         {displayMetrics.map((metric, index) => {
           return (
             <div
               key={index}
-              className="shadow-sm rounded-lg p-4"
+              className="shadow-sm rounded-lg p-3 md:p-4"
               style={{ backgroundColor: metric.color }}
             >
               <div className="flex justify-between items-center">
-                <p className="font-medium text-xs text-[#f5f5f5]">
+                <p className="font-medium text-[10px] md:text-xs text-[#f5f5f5]">
                   {metric.title}
                 </p>
                 <div className="flex items-center gap-1">
                   <svg
-                    className="w-3 h-3"
+                    className="w-2.5 h-2.5 md:w-3 md:h-3"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                     strokeWidth="4"
@@ -248,14 +248,14 @@ const Metrics = () => {
                     />
                   </svg>
                   <p
-                    className="font-medium text-xs"
+                    className="font-medium text-[10px] md:text-xs"
                     style={{ color: metric.isIncrease ? "#f5f5f5" : "red" }}
                   >
                     {metric.percentage}
                   </p>
                 </div>
               </div>
-              <p className="mt-1 font-semibold text-2xl text-[#f5f5f5]">
+              <p className="mt-1 font-semibold text-xl md:text-2xl text-[#f5f5f5]">
                 {metric.value}
               </p>
             </div>
@@ -263,32 +263,34 @@ const Metrics = () => {
         })}
       </div>
 
-      <div className="flex flex-col justify-between mt-12">
+      <div className="flex flex-col justify-between mt-8 md:mt-12">
         <div>
-          <h2 className={`font-semibold ${textColor} text-xl`}>
+          <h2 className={`font-semibold ${textColor} text-lg md:text-xl`}>
             Item Details
           </h2>
-          <p className={`text-sm ${subTextColor}`}>
+          <p className={`text-xs md:text-sm ${subTextColor}`}>
             Overview of your menu items and their performance.
           </p>
         </div>
 
-        <div className="mt-6 grid grid-cols-4 gap-4">
+        <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
 
             {
                 dynamicItemsData.map((item, index) => {
                     return (
-                        <div key={index} className="shadow-sm rounded-lg p-4" style={{ backgroundColor: item.color }}>
+                        <div key={index} className="shadow-sm rounded-lg p-3 md:p-4" style={{ backgroundColor: item.color }}>
                         <div className="flex justify-between items-center">
-                          <p className="font-medium text-xs text-[#f5f5f5]">{item.title}</p>
-                          <div className="flex items-center gap-1">
-                            <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="4" fill="none">
-                              <path d="M5 15l7-7 7 7" />
-                            </svg>
-                            <p className="font-medium text-xs text-[#f5f5f5]">{item.percentage}</p>
-                          </div>
+                          <p className="font-medium text-[10px] md:text-xs text-[#f5f5f5]">{item.title}</p>
+                          {item.percentage && (
+                            <div className="flex items-center gap-1">
+                              <svg className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="4" fill="none">
+                                <path d="M5 15l7-7 7 7" />
+                              </svg>
+                              <p className="font-medium text-[10px] md:text-xs text-[#f5f5f5]">{item.percentage}</p>
+                            </div>
+                          )}
                         </div>
-                        <p className="mt-1 font-semibold text-2xl text-[#f5f5f5]">{item.value}</p>
+                        <p className="mt-1 font-semibold text-xl md:text-2xl text-[#f5f5f5]">{item.value}</p>
                       </div>
                     )
                 })

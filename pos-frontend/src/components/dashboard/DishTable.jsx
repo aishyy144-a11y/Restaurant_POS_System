@@ -23,17 +23,17 @@ const DishTable = () => {
   const borderColor = isDark ? "border-gray-600" : "border-sky-300";
 
   return (
-    <div className={`container mx-auto ${containerBg} p-4 rounded-lg mt-6`}>
-      <h2 className={`${textColor} text-xl font-semibold mb-4`}>
+    <div className={`container mx-auto ${containerBg} p-2 md:p-4 rounded-lg mt-6`}>
+      <h2 className={`${textColor} text-lg md:text-xl font-semibold mb-4`}>
         Dish Order Summary
       </h2>
-      <div className="overflow-x-auto">
-        <table className={`w-full text-left ${textColor}`}>
+      <div className="overflow-x-auto scrollbar-hide">
+        <table className={`w-full text-left ${textColor} min-w-[500px]`}>
           <thead className={`${theadBg} ${theadText} sticky top-0`}>
             <tr>
-              <th className="p-3">Category</th>
-              <th className="p-3">Dish</th>
-              <th className="p-3 text-right">Orders</th>
+              <th className="p-2 md:p-3 text-sm md:text-base">Category</th>
+              <th className="p-2 md:p-3 text-sm md:text-base">Dish</th>
+              <th className="p-2 md:p-3 text-sm md:text-base text-right">Orders</th>
             </tr>
           </thead>
           <tbody>
@@ -47,17 +47,17 @@ const DishTable = () => {
                     key={index}
                     className={`border-b ${borderColor} ${rowHover}`}
                 >
-                    <td className="p-4 font-medium">{dish.category}</td>
-                    <td className="p-4 flex items-center gap-3">
+                    <td className="p-2 md:p-4 text-sm md:text-base font-medium">{dish.category}</td>
+                    <td className="p-2 md:p-4 text-sm md:text-base flex items-center gap-3">
                         {dish.image && (
                             <div 
-                                className="w-10 h-10 rounded-full bg-cover bg-center bg-gray-200"
+                                className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-cover bg-center bg-gray-200 shrink-0"
                                 style={{ backgroundImage: `url(${getImageUrl(dish.image)})` }}
                             ></div>
                         )}
-                        <span>{dish.name}</span>
+                        <span className="truncate">{dish.name}</span>
                     </td>
-                    <td className="p-4 text-right font-bold">{dish.orderCount}</td>
+                    <td className="p-2 md:p-4 text-sm md:text-base text-right font-bold">{dish.orderCount}</td>
                 </tr>
                 ))
             )}

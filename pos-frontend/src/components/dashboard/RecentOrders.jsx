@@ -58,22 +58,22 @@ const RecentOrders = () => {
   const selectBorder = isDark ? "border-gray-500" : "border-sky-300";
   
   return (
-    <div className={`container mx-auto ${containerBg} p-4 rounded-lg`}>
-      <h2 className={`${textColor} text-xl font-semibold mb-4`}>
+    <div className={`container mx-auto ${containerBg} p-2 md:p-4 rounded-lg`}>
+      <h2 className={`${textColor} text-lg md:text-xl font-semibold mb-4`}>
         Recent Orders
       </h2>
-      <div className="overflow-x-auto">
-        <table className={`w-full text-left ${textColor}`}>
+      <div className="overflow-x-auto scrollbar-hide">
+        <table className={`w-full text-left ${textColor} min-w-[900px]`}>
           <thead className={`${theadBg} ${theadText}`}>
             <tr>
-              <th className="p-3">Order ID</th>
-              <th className="p-3">Customer</th>
-              <th className="p-3">Status</th>
-              <th className="p-3">Date & Time</th>
-              <th className="p-3">Items</th>
-              <th className="p-3">Table No</th>
-              <th className="p-3">Total</th>
-              <th className="p-3 text-center">Payment Method</th>
+              <th className="p-2 md:p-3 text-sm md:text-base">Order ID</th>
+              <th className="p-2 md:p-3 text-sm md:text-base">Customer</th>
+              <th className="p-2 md:p-3 text-sm md:text-base">Status</th>
+              <th className="p-2 md:p-3 text-sm md:text-base">Date & Time</th>
+              <th className="p-2 md:p-3 text-sm md:text-base">Items</th>
+              <th className="p-2 md:p-3 text-sm md:text-base">Table No</th>
+              <th className="p-2 md:p-3 text-sm md:text-base">Total</th>
+              <th className="p-2 md:p-3 text-sm md:text-base text-center">Payment Method</th>
             </tr>
           </thead>
           <tbody>
@@ -82,11 +82,11 @@ const RecentOrders = () => {
                 key={index}
                 className={`border-b ${borderColor} ${rowHover}`}
               >
-                <td className="p-4">#{Math.floor(new Date(order.orderDate).getTime())}</td>
-                <td className="p-4">{order.customerDetails.name}</td>
-                <td className="p-4">
+                <td className="p-2 md:p-4 text-xs md:text-sm">#{Math.floor(new Date(order.orderDate).getTime())}</td>
+                <td className="p-2 md:p-4 text-xs md:text-sm font-medium">{order.customerDetails.name}</td>
+                <td className="p-2 md:p-4 text-xs md:text-sm">
                   <select
-                    className={`${selectBg} ${textColor} border ${selectBorder} p-2 rounded-lg focus:outline-none ${
+                    className={`${selectBg} ${textColor} border ${selectBorder} p-1 md:p-2 rounded-lg focus:outline-none text-[10px] md:text-xs ${
                       order.orderStatus === "Ready"
                         ? "text-green-500"
                         : "text-yellow-500"
@@ -105,17 +105,17 @@ const RecentOrders = () => {
                     </option>
                   </select>
                 </td>
-                <td className="p-4">{formatDateAndTime(order.createdAt)}</td>
-                <td className="p-4">
+                <td className="p-2 md:p-4 text-xs md:text-sm whitespace-nowrap">{formatDateAndTime(order.createdAt)}</td>
+                <td className="p-2 md:p-4 text-xs md:text-sm">
                   {order.items.map((item, idx) => (
                     <span key={idx} className="block whitespace-nowrap">
                       {item.name} <span className="font-bold">x{item.quantity}</span>
                     </span>
                   ))}
                 </td>
-                <td className="p-4">{order.table?.tableNo || "N/A"}</td>
-                <td className="p-4">PKR {order.bills.totalWithTax}</td>
-                <td className="p-4">
+                <td className="p-2 md:p-4 text-xs md:text-sm text-center font-bold text-yellow-500">{order.table?.tableNo || "N/A"}</td>
+                <td className="p-2 md:p-4 text-xs md:text-sm font-bold whitespace-nowrap">PKR {order.bills.totalWithTax}</td>
+                <td className="p-2 md:p-4 text-xs md:text-sm text-center">
                   {order.paymentMethod}
                 </td>
               </tr>

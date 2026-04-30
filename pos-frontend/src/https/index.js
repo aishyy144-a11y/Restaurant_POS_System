@@ -1,6 +1,7 @@
 import { axiosWrapper } from "./axiosWrapper";
 
 // -------------------- Auth Endpoints --------------------
+export const ping = () => axiosWrapper.get("/ping"); // For warming up backend cold start
 export const login = (data) => axiosWrapper.post("/user/login", data);
 export const register = (data) => axiosWrapper.post("/user/register", data);
 export const getUserData = () => axiosWrapper.get("/user");

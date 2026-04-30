@@ -7,7 +7,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import restaurant from "../assets/images/restaurant-img.jpg";
 import logo from "../assets/images/logo.png";
 import lightLogo from "../assets/images/Light-logo.png";
-import { login } from "../https";
+import { login, ping } from "../https";
 import { setUser } from "../redux/slices/userSlice";
 
 const AdminLogin = () => {
@@ -19,6 +19,7 @@ const AdminLogin = () => {
 
   useEffect(() => {
     document.title = "POS | Admin Login";
+    ping().catch(() => {});
   }, []);
 
   const [formData, setFormData] = useState({

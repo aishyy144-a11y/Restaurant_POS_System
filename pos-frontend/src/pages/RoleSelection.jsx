@@ -5,6 +5,7 @@ import { FaUserShield, FaUserTie, FaConciergeBell, FaUtensils, FaTimes, FaFire }
 import logo from "../assets/images/logo.png";
 import lightLogo from "../assets/images/Light-logo.png";
 import restaurant from "../assets/images/restaurant-img.jpg";
+import { ping } from "../https";
 
 const RoleSelection = () => {
   const theme = useSelector((state) => state.theme.theme);
@@ -14,6 +15,9 @@ const RoleSelection = () => {
   const logoSrc = isDark ? logo : lightLogo;
 
   useEffect(() => {
+    // Warm up backend cold start
+    ping().catch(() => {}); 
+    
     // Prevent back navigation to authenticated pages after logout
     window.history.pushState(null, "", window.location.href);
     const handlePopState = () => {

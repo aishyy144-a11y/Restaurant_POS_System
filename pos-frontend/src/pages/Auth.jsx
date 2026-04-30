@@ -6,6 +6,7 @@ import logo from "../assets/images/logo.png"
 import lightLogo from "../assets/images/Light-logo.png"
 import Register from "../components/auth/Register";
 import Login from "../components/auth/Login";
+import { ping } from "../https";
 
 const Auth = () => {
   const theme = useSelector((state) => state.theme.theme);
@@ -17,6 +18,7 @@ const Auth = () => {
 
   useEffect(() => {
     document.title = "POS | Auth"
+    ping().catch(() => {});
   }, [])
 
   const [isRegister, setIsRegister] = useState(false);

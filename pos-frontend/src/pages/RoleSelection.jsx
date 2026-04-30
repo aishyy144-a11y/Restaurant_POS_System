@@ -35,6 +35,7 @@ const RoleSelection = () => {
   const rightBg = isDark ? "bg-[#1a1a1a]" : "bg-[#f5f5f5]";
   const cardBg = isDark ? "bg-[#262626]" : "bg-white";
   const textColor = isDark ? "text-white" : "text-gray-800";
+  const descColor = isDark ? "text-gray-400" : "text-gray-500";
   const hoverClass = "hover:scale-105 transition-transform duration-300 cursor-pointer shadow-lg";
 
   const handleRoleSelect = (role) => {
@@ -86,7 +87,7 @@ const RoleSelection = () => {
                 <FaUserShield />
               </div>
               <h2 className={`${textColor} text-sm md:text-base font-bold text-center`}>Admin</h2>
-              <p className="text-gray-500 text-center text-[10px] hidden md:block">Access dashboard & settings</p>
+              <p className={`${descColor} text-center text-[10px] hidden md:block`}>Access dashboard & settings</p>
             </div>
 
             {/* Manager Option */}
@@ -98,7 +99,7 @@ const RoleSelection = () => {
                 <FaUserShield />
               </div>
               <h2 className={`${textColor} text-sm md:text-base font-bold text-center`}>Manager</h2>
-              <p className="text-gray-500 text-center text-[10px] hidden md:block">Access limited dashboard</p>
+              <p className={`${descColor} text-center text-[10px] hidden md:block`}>Access limited dashboard</p>
             </div>
 
             {/* Cashier Option */}
@@ -110,7 +111,7 @@ const RoleSelection = () => {
                 <FaUserTie />
               </div>
               <h2 className={`${textColor} text-sm md:text-base font-bold text-center`}>Cashier</h2>
-              <p className="text-gray-500 text-center text-[10px] hidden md:block">Manage payments & bills</p>
+              <p className={`${descColor} text-center text-[10px] hidden md:block`}>Manage payments & bills</p>
             </div>
 
             {/* Waiter Option */}
@@ -122,7 +123,7 @@ const RoleSelection = () => {
                 <FaConciergeBell />
               </div>
               <h2 className={`${textColor} text-sm md:text-base font-bold text-center`}>Waiter</h2>
-              <p className="text-gray-500 text-center text-[10px] hidden md:block">Take orders & serve</p>
+              <p className={`${descColor} text-center text-[10px] hidden md:block`}>Take orders & serve</p>
             </div>
 
             {/* Kitchen Option */}
@@ -134,7 +135,7 @@ const RoleSelection = () => {
                 <FaUtensils />
               </div>
               <h2 className={`${textColor} text-sm md:text-base font-bold text-center`}>Kitchen</h2>
-              <p className="text-gray-500 text-center text-[10px] hidden md:block">Manage food preparation</p>
+              <p className={`${descColor} text-center text-[10px] hidden md:block`}>Manage food preparation</p>
             </div>
           </div>
         </div>
